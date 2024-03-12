@@ -13,20 +13,23 @@ public class ProductService {
 	
 	@Autowired
 	ProductRepository productRepository;
-	public ProductDTO getProductDTO(Integer productId) {
+	
+	public Product getProduct(Integer productId) {
 		Product product = productRepository.findById(productId).orElse(null);
 	    if (product == null) {
 	        return null;
 	    }
-	    return new ProductDTO(
-	        product.getProductId(),
-	        product.getProductName(),
-	        product.getProductPrice(),
-	        product.getProductType(),
-	        product.getProductDescription(),
-	        product.getProductAvailableQuantity()
-	    );
+		return product;
+	    
 	    
 	}
+	
+	public String addProductDTO(Product product) {
+		// TODO Auto-generated method stub
+		productRepository.save(product);
+		return "Product Added Successfully"+product.getProductId();
+	}
+
+	
 
 }
